@@ -226,6 +226,25 @@ def direction(actions: Actions) -> Features:
 
     return mov
 
+@simple
+def width(actions: Actions) -> Features:
+    """Get the distance from the mid point of the y axis .
+
+    Parameters
+    ----------
+    actions : Actions
+        The actions of a game.
+
+    Returns
+    -------
+    Features
+        The distance from the mid point of the y axis 'width_y' 
+        of each action.
+    """
+    width_df = pd.DataFrame()
+    dist_mid_y = (actions['y']-_goal_y).abs().values
+    width_df['width_y'] = dist_mid_y
+    return width_df
 
 def goalscore(gamestates: GameStates) -> Features:
     """Get the number of goals scored by each team after the action.
